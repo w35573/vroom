@@ -1,0 +1,82 @@
+{
+  "bangalore": {
+    "long": 77.584239,
+    "lat": 12.990761
+  },
+  "hyderabad": {
+    "long": 78.384005,
+    "lat": 17.421472
+  },
+  "chennai": {
+    "long": 80.244709,
+    "lat": 13.055549
+  },
+  "mumbai": {
+    "long": 72.84343,
+    "lat": 19.106129
+  },
+  "delhi-ncr": {
+    "long": 77.144723,
+    "lat": 28.602076
+  },
+  "pune": {
+    "long": 73.9091,
+    "lat": 18.5789
+  },
+  "kolkata": {
+    "long": 88.3639,
+    "lat": 22.5726
+  },
+  "ahmedabad": {
+    "long": 72.5714,
+    "lat": 23.0225
+  },
+  "bhubaneswar": {
+    "long": 85.8245,
+    "lat": 20.2961
+  },
+  "chandigarh": {
+    "long": 76.771253,
+    "lat": 30.727404
+  },
+  "coimbatore": {
+    "long": 76.91,
+    "lat": 11.04
+  },
+  "jaipur": {
+    "long": 75.776823,
+    "lat": 26.896829
+  },
+  "kochi": {
+    "long": 76.2673,
+    "lat": 9.9312
+  },
+  "mangalore": {
+    "long": 74.8716065866089,
+    "lat": 12.9722376459604
+  },
+  "mysore": {
+    "long": 76.6393805,
+    "lat": 12.2958104
+  },
+  "nagpur": {
+    "long": 79.0882,
+    "lat": 21.1458
+  },
+  "tirupati": {
+    "long": 79.4,
+    "lat": 13.6
+  },
+  "trivandrum": {
+    "long": 76.936638,
+    "lat": 8.524139
+  },
+  "vijayawada": {
+    "long": 80.7,
+    "lat": 16.5
+  },
+  "vizag": {
+    "long": 83.3,
+    "lat": 17.71
+  }
+}
