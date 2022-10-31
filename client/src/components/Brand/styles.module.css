@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  padding-left: 0;
+  margin-left: 0;
+  margin-top: 10px !important;
+  margin-bottom: 30px;
+}
+
+.heading {
+  margin: 0;
+  font-size: 16px;
+  margin: 10px;
+  color: #000;
+}
+
+.brand_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.brand {
+  min-width: 90px;
+  display: flex;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.brand_label {
+  margin: 0;
+  margin-left: 5px;
+}

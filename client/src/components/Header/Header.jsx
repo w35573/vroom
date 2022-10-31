@@ -2,6 +2,9 @@ import React, { useRef } from "react";
 
 import { Container } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
+import { useLogout } from "../../hooks/useLogout";
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 import "../../styles/header.css";
 
 const navLinks = [
@@ -33,6 +36,22 @@ const Header = () => {
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
 
+  const { logout } = useLogout();
+  const { user } = useAuthContext();
+
+  if (user) {
+    navLinks.push({
+      path: "/profile",
+      display: "Profile",
+    });
+  } else if (navLinks.some((link) => link.path === "/profile")) {
+    navLinks.pop();
+  }
+
+  const handleClick = () => {
+    logout();
+  };
+
   return (
     <header className="header">
       <div className="main__navbar">
@@ -41,7 +60,6 @@ const Header = () => {
             <span className="mobile__menu">
               <i class="ri-menu-line" onClick={toggleMenu}></i>
             </span>
-
             <div className="logo">
               <h1>
                 <Link to="/home" className=" d-flex align-items-center gap-2">
@@ -61,7 +79,6 @@ const Header = () => {
                 </Link>
               </h1>
             </div>
-
             <div className="navigation" ref={menuRef} onClick={toggleMenu}>
               <div className="menu">
                 {navLinks.map((item, index) => (
@@ -77,16 +94,26 @@ const Header = () => {
                 ))}
               </div>
             </div>
+            {user && (
+              <div className="header__top__right d-flex align-items-center gap-3">
+                <span className="user-name">{user.email}</span>
+                <button onClick={handleClick} className="logout-btn">
+                  Logout
+                </button>
+              </div>
+            )}
 
-            <div className="header__top__right d-flex align-items-center gap-3">
-              <Link to="#" className=" d-flex align-items-center gap-1">
-                <i class="ri-login-circle-line"></i> Login
-              </Link>
+            {!user && (
+              <div className="header__top__right d-flex align-items-center gap-3">
+                <Link to="/login" className=" d-flex align-items-center gap-1">
+                  <i class="ri-login-circle-line"></i> Login
+                </Link>
 
-              <Link to="#" className=" d-flex align-items-center gap-1">
-                <i class="ri-user-line"></i> Register
-              </Link>
-            </div>
+                <Link to="/signup" className=" d-flex align-items-center gap-1">
+                  <i class="ri-user-line"></i> Sign Up
+                </Link>
+              </div>
+            )}
           </div>
         </Container>
       </div>

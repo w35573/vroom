@@ -17,7 +17,7 @@ const CityDetails = () => {
   const long = locationData[location].long;
   const lat = locationData[location].lat;
 
-  const URL = `https://vroom.up.railway.app/str/${start}/${end}/${long}/${lat}/${location}`;
+  const URL = `/api/str/${start}/${end}/${long}/${lat}/${location}`;
 
   useEffect(() => {
     axios

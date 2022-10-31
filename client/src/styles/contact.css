@@ -5,6 +5,10 @@
   font-size: 1.2rem;
 }
 
+.contact__info {
+  margin-left: 8rem;
+}
+
 .contact__btn {
   padding: 7px 15px;
   background: #000d6b;
@@ -14,9 +18,19 @@
   border-radius: 5px;
 }
 
+@media only screen and (max-width: 1080px) {
+  .contact__info {
+    margin-left: 4rem;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .contact__btn {
     margin-bottom: 40px;
     font-size: 0.8rem;
+  }
+
+  .contact__info {
+    margin-left: 0;
   }
 }
