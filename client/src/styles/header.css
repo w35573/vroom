@@ -76,16 +76,23 @@
   cursor: pointer;
   font-size: 1em;
   transition: 0.3s all ease-in-out;
+  margin-top: 15px;
 }
 
 .logout-btn:hover {
-  background: #fff;
-  color: #000d6b;
+  transform: scale(1.1);
   cursor: pointer;
 }
 
 .user-name {
   color: #fff;
+}
+
+#profile__image { 
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 @media only screen and (max-width: 768px) {

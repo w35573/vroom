@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 const Sort = ({ sort, setSort }) => {
   return (
     <div className={styles.container}>
-      <i class="ri-sort-asc"></i>
+      <i className="ri-sort-asc"></i>
       <p className={styles.sort_by}>Sort by:</p>
       <select
         value={sort}

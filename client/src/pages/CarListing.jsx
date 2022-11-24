@@ -15,6 +15,7 @@ import Segment from "../components/Segment";
 import Fuel from "../components/Fuel";
 import Transmission from "../components/Transmission";
 import Brand from "../components/Brand";
+import Loading from "../components/UI/Loading";
 
 const CarListing = () => {
   const [obj, setObj] = useState(null);
@@ -28,16 +29,40 @@ const CarListing = () => {
   const [segment, setSegment] = useState([]);
   const [sort, setSort] = useState("asc");
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(
-          `/api/cars/filter?page=${page}&city=${city}&min=${min}&max=${max}&availability=${availability}&fuel=${fuel}&transmission=${transmission}&brand=${brand}&segment=${segment}&sort=${sort}`
+        setLoading(true);
+        const cachedData = localStorage.getItem(
+          `${page}-${city}-${min}-${max}-${availability}-${
+            fuel.length !== 0 ? fuel : "all"
+          }-${transmission.length !== 0 ? transmission : "all"}-${
+            brand.length !== 0 ? brand : "all"
+          }-${segment.length !== 0 ? segment : "all"}-${sort}`
         );
 
-        setObj(data);
-        localStorage.setItem("carListing", JSON.stringify(data));
+        if (cachedData) {
+          // console.log(cachedData);
+          setObj(JSON.parse(cachedData));
+        } else {
+          const { data } = await axios.get(
+            `/api/cars/filter?page=${page}&city=${city}&min=${min}&max=${max}&availability=${availability}&fuel=${fuel}&transmission=${transmission}&brand=${brand}&segment=${segment}&sort=${sort}`
+          );
+
+          setObj(data);
+          localStorage.setItem(
+            `${page}-${city}-${min}-${max}-${availability}-${
+              fuel.length !== 0 ? fuel : "all"
+            }-${transmission.length !== 0 ? transmission : "all"}-${
+              brand.length !== 0 ? brand : "all"
+            }-${segment.length !== 0 ? segment : "all"}-${sort}`,
+            JSON.stringify(data)
+          );
+          // console.log(fuel, city, min, transmission, brand, segment);
+        }
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -57,7 +82,7 @@ const CarListing = () => {
     page,
   ]);
 
-  if (obj) {
+  if (loading === false) {
     return (
       <Helmet title="Cars">
         <CommonSection title="Monthly Car Subscription" />
@@ -71,7 +96,7 @@ const CarListing = () => {
 
               <Row>
                 <div className="filter">
-                  <i class="ri-filter-3-line"></i>
+                  <i className="ri-filter-3-line"></i>
                   <span className="filter_text">Filter By</span>
                 </div>
               </Row>
@@ -132,7 +157,22 @@ const CarListing = () => {
 
             <Row>
               {obj.data.map((item) => (
-                <CarListingCard item={item} key={item._id} />
+                <CarListingCard
+                  item={item}
+                  page={page}
+                  city={city}
+                  min={min}
+                  max={max}
+                  availability={availability}
+                  fuel={fuel.length !== 0 ? fuel : "all"}
+                  transmission={
+                    transmission.length !== 0 ? transmission : "all"
+                  }
+                  brand={brand.length !== 0 ? brand : "all"}
+                  segment={segment.length !== 0 ? segment : "all"}
+                  sort={sort}
+                  key={item._id}
+                />
               ))}
             </Row>
 
@@ -146,6 +186,8 @@ const CarListing = () => {
         </section>
       </Helmet>
     );
+  } else {
+    return <Loading />;
   }
 };
 

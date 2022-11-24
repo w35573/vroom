@@ -19,15 +19,16 @@ const Transmission = ({
     <div className={styles.container}>
       <h1 className={styles.heading}>Transmission:</h1>
       <div className={styles.transmission_container}>
-        {transmissionOptions.map((transmission) => (
-          <div className={styles.transmission} key={transmission}>
+        {transmissionOptions.map((t) => (
+          <div className={styles.transmission} key={t}>
             <input
               className={styles.transmission_input}
               type="checkbox"
-              value={transmission}
+              value={t}
+              checked={transmission.includes(t)}
               onChange={onChange}
             />
-            <p className={styles.transmission_label}>{transmission}</p>
+            <p className={styles.transmission_label}>{t}</p>
           </div>
         ))}
       </div>

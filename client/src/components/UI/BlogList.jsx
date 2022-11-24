@@ -4,6 +4,7 @@ import "../../styles/blog-item.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import authors from "../../assets/data/randomUser.json";
+import Loading from "../../components/UI/Loading";
 
 const BlogList = () => {
   const [blogData, setBlogs] = useState([]);
@@ -54,10 +55,21 @@ const BlogList = () => {
             author: authorNames[i],
             time: time,
             date: date,
-            url: rawData[i].url
+            url: rawData[i].url,
           });
           // console.log(res.data.articles);
         }
+
+        // const articles = [];
+
+        // for (let i = 0; i < polishedData.length; i++) {
+        //   if(polishedData[i].title ) {
+
+        //   }
+        // }
+
+        console.log(polishedData[0]);
+
         setBlogs(polishedData);
 
         localStorage.setItem("blogs", JSON.stringify(polishedData));
@@ -67,15 +79,13 @@ const BlogList = () => {
       });
   }, [URL]);
 
-  if (blogData) {
-    return (
-      <>
-        {blogData.map((item) => (
-          <BlogItem item={item} key={item.id} />
-        ))}
-      </>
-    );
-  }
+  return (
+    <>
+      {blogData.length === 0 && <Loading />}
+      {blogData.length !== 0 &&
+        blogData.map((item) => <BlogItem item={item} key={item.id} />)}
+    </>
+  );
 };
 
 const BlogItem = ({ item }) => {
@@ -84,7 +94,7 @@ const BlogItem = ({ item }) => {
   return (
     <Col lg="4" md="6" sm="6" className="mb-5">
       <div className="blog__item">
-        <img src={imgUrl} alt="" className="w-100" />
+        <img src={imgUrl} alt="" className="w-100 blog__image" />
         <div className="blog__info p-3">
           <Link to={`/blogs/${id}`} className="blog__title">
             {title.length > 60 ? title.slice(0, 61) + "..." : title}
@@ -101,16 +111,16 @@ const BlogItem = ({ item }) => {
 
           <div className="blog__time pt-3 mt-3 d-flex align-items-center justify-content-between">
             <span className="blog__author">
-              <i class="ri-user-line"></i> {author}
+              <i className="ri-user-line"></i> {author}
             </span>
 
             <div className=" d-flex align-items-center gap-3">
               <span className=" d-flex align-items-center gap-1 section__description">
-                <i class="ri-calendar-line"></i> {date}
+                <i className="ri-calendar-line"></i> {date}
               </span>
 
               <span className=" d-flex align-items-center gap-1 section__description">
-                <i class="ri-time-line"></i> {time}
+                <i className="ri-time-line"></i> {time}
               </span>
             </div>
           </div>

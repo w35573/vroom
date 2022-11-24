@@ -12,7 +12,8 @@ const carsFilter = require('./car_data/cars');
 const blogData = require('./blog_data/blogData');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
-
+const stripe = require('../backend/routes/stripe');
+const fetchOrders = require('../backend/routes/fetchOrders');
 
 app.use(express.json());
 app.use(cors());
@@ -105,21 +106,29 @@ app.get('/api/blog/:url', async (req, res) => {
     }
 });
 
+//Orders routes
+app.use('/api/orders', fetchOrders);
+
 //User routes
 app.use('/api/user', userRoutes);
+
+//stripe routes
+app.use('/api/stripe', stripe);
 
 //middleware for swagger
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const PORT = process.env.PORT || 5000;
 
+// listen for requests
+app.listen(process.env.PORT, () => {
+    console.log('Listening on port', process.env.PORT)
+});
+
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        // listen for requests
-        app.listen(process.env.PORT, () => {
-            console.log('connected to db & listening on port', process.env.PORT)
-        })
+        console.log('Connected to mongoDB')
     })
     .catch((error) => {
         console.log(error)

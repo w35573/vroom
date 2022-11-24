@@ -3,12 +3,23 @@ import { Container, Row, Col } from "reactstrap";
 import Carousel from "react-bootstrap/Carousel";
 import Helmet from "../components/Helmet/Helmet";
 import { useParams } from "react-router-dom";
-import BookingForm from "../components/UI/BookingForm";
-import PaymentMethod from "../components/UI/PaymentMethod";
+import PayButton from "../components/UI/PayButton";
 import "../styles/car-listing-details.css";
 
 const CarListingDetails = () => {
-  const { id } = useParams();
+  const {
+    id,
+    page,
+    city,
+    min,
+    max,
+    availability,
+    fuel,
+    trans,
+    brand,
+    segment,
+    sort,
+  } = useParams();
 
   const [items, setItems] = useState([]);
 
@@ -19,12 +30,28 @@ const CarListingDetails = () => {
   };
 
   useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("carListing"));
+    const items = JSON.parse(
+      localStorage.getItem(
+        `${page}-${city}-${min}-${max}-${availability}-${fuel}-${trans}-${brand}-${segment}-${sort}`
+      )
+    );
 
     if (items) {
       setItems(items.data);
     }
-  }, []);
+  }, [
+    availability,
+    brand,
+    city,
+    fuel,
+    id,
+    max,
+    min,
+    page,
+    segment,
+    sort,
+    trans,
+  ]);
 
   const singleCarItem = items.find((items) => items._id === id);
 
@@ -46,15 +73,11 @@ const CarListingDetails = () => {
                 /> */}
 
                 <Carousel activeIndex={index} onSelect={handleSelect}>
-                {singleCarItem.images.map((image, index) => (
+                  {singleCarItem.images.map((image, index) => (
                     <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={image}
-                            alt={index}
-                        />
+                      <img className="d-block w-100" src={image} alt={index} />
                     </Carousel.Item>
-                ))}
+                  ))}
                 </Carousel>
               </Col>
 
@@ -71,11 +94,11 @@ const CarListingDetails = () => {
 
                     <span className=" d-flex align-items-center gap-2">
                       <span style={{ color: "#f9a826" }}>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
                       </span>
                       ({singleCarItem.extraKMCharge} ratings)
                     </span>
@@ -100,7 +123,7 @@ const CarListingDetails = () => {
                   >
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-roadster-line"
+                        className="ri-roadster-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.model}
@@ -108,7 +131,7 @@ const CarListingDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-settings-2-line"
+                        className="ri-settings-2-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.transmission}
@@ -116,7 +139,7 @@ const CarListingDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-timer-flash-line"
+                        className="ri-timer-flash-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.carType}
@@ -129,7 +152,7 @@ const CarListingDetails = () => {
                   >
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-gas-station-line"
+                        className="ri-gas-station-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.fuelType}
@@ -137,7 +160,7 @@ const CarListingDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-wheelchair-line"
+                        className="ri-wheelchair-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.variant}
@@ -145,16 +168,20 @@ const CarListingDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-building-2-line"
+                        className="ri-building-2-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.producer}
                     </span>
                   </div>
                 </div>
+
+                <div className="checkout-btn">
+                  <PayButton checkOutItem={singleCarItem} />
+                </div>
               </Col>
 
-              <Col lg="7" className="mt-5">
+              {/* <Col lg="7" className="mt-5">
                 <div className="booking-info mt-5">
                   <h5 className="mb-4 fw-bold ">Booking Information</h5>
                   <BookingForm />
@@ -166,7 +193,7 @@ const CarListingDetails = () => {
                   <h5 className="mb-4 fw-bold ">Payment Information</h5>
                   <PaymentMethod />
                 </div>
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </section>

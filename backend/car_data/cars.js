@@ -36,7 +36,7 @@ async function getData(city, min, max, availability, fuel, transmission, brand, 
             try {
                 if (response.url() == "https://admin.revv.co.in/api/v1/lt/car/pricing/get") {
                     const data = await response.json();
-                    console.log(data);
+                    // console.log(data);
                     result.push(data);
                 }
             } catch (e) {
@@ -44,7 +44,7 @@ async function getData(city, min, max, availability, fuel, transmission, brand, 
             }
         });
 
-        await page.goto(URL, { waitUntil: 'networkidle0' });
+        await page.goto(URL, { waitUntil: 'networkidle2' });
 
         await browser.close();
 

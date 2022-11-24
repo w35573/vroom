@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 
 import { Container } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
-import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import profileImage from "../../assets/all-images/profile.png";
 
 import "../../styles/header.css";
 
@@ -36,7 +36,6 @@ const Header = () => {
 
   const toggleMenu = () => menuRef.current.classList.toggle("menu__active");
 
-  const { logout } = useLogout();
   const { user } = useAuthContext();
 
   if (user) {
@@ -48,17 +47,13 @@ const Header = () => {
     navLinks.pop();
   }
 
-  const handleClick = () => {
-    logout();
-  };
-
   return (
     <header className="header">
       <div className="main__navbar">
         <Container>
           <div className="navigation__wrapper d-flex align-items-center justify-content-between">
             <span className="mobile__menu">
-              <i class="ri-menu-line" onClick={toggleMenu}></i>
+              <i className="ri-menu-line" onClick={toggleMenu}></i>
             </span>
             <div className="logo">
               <h1>
@@ -96,21 +91,21 @@ const Header = () => {
             </div>
             {user && (
               <div className="header__top__right d-flex align-items-center gap-3">
-                <span className="user-name">{user.email}</span>
-                <button onClick={handleClick} className="logout-btn">
-                  Logout
-                </button>
+                <div className="profile__image">
+                  <img src={profileImage} alt="profile" id="profile__image" />
+                </div>
+                {/* <span className="user-name">{user.email}</span> */}
               </div>
             )}
 
             {!user && (
               <div className="header__top__right d-flex align-items-center gap-3">
                 <Link to="/login" className=" d-flex align-items-center gap-1">
-                  <i class="ri-login-circle-line"></i> Login
+                  <i className="ri-login-circle-line"></i> Login
                 </Link>
 
                 <Link to="/signup" className=" d-flex align-items-center gap-1">
-                  <i class="ri-user-line"></i> Sign Up
+                  <i className="ri-user-line"></i> Sign Up
                 </Link>
               </div>
             )}

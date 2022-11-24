@@ -7,6 +7,7 @@ import 'remixicon/fonts/remixicon.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { AuthContextProvider } from '../src/context/AuthContext';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 

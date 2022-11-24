@@ -19,15 +19,16 @@ const Brand = ({
         <div className={styles.container}>
             <h1 className={styles.heading}>Brand:</h1>
             <div className={styles.brand_container}>
-                {brandOptions.map((brand) => (
-                    <div className={styles.brand} key={brand}>
+                {brandOptions.map((b) => (
+                    <div className={styles.brand} key={b}>
                         <input
                             className={styles.brand_input}
                             type="checkbox"
-                            value={brand}
+                            value={b}
+                            checked={brand.includes(b)}
                             onChange={onChange}
                         />
-                        <p className={styles.brand_label}>{brand}</p>
+                        <p className={styles.brand_label}>{b}</p>
                     </div>
                 ))}
             </div>

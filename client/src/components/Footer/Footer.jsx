@@ -41,7 +41,7 @@ const Footer = () => {
             <div className="logo footer__logo">
               <h1>
                 <Link to="/home" className=" d-flex align-items-center gap-2">
-                  <i class="ri-car-line"></i>
+                  <i className="ri-car-line"></i>
                   <span>
                     Vroom <br /> Car Rental
                   </span>
@@ -91,11 +91,13 @@ const Footer = () => {
           <Col lg="3" md="4" sm="12">
             <div className="mb-4">
               <h5 className="footer__link-title mb-4">Newsletter</h5>
-              <p className="section__description">Subscribe to our Newsletter</p>
+              <p className="section__description">
+                Subscribe to our Newsletter
+              </p>
               <div className="newsletter">
                 <input type="email" placeholder="Email" />
                 <span>
-                  <i class="ri-send-plane-line"></i>
+                  <i className="ri-send-plane-line"></i>
                 </span>
               </div>
             </div>
@@ -104,8 +106,8 @@ const Footer = () => {
           <Col lg="12">
             <div className="footer__bottom">
               <p className="section__description d-flex align-items-center justify-content-center gap-1 pt-4">
-                <i class="ri-copyright-line"></i>Copyright {year}, Developed by
-                w35573. All rights reserved.
+                <i className="ri-copyright-line"></i>Copyright {year}, Developed
+                by w35573. All rights reserved.
               </p>
             </div>
           </Col>

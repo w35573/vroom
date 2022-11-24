@@ -15,15 +15,16 @@ const Fuel = ({ fuelOptions, fuel, setFuel }) => {
     <div className={styles.container}>
       <h1 className={styles.heading}>Fuel:</h1>
       <div className={styles.fuel_container}>
-        {fuelOptions.map((fuel) => (
-          <div className={styles.fuel} key={fuel}>
+        {fuelOptions.map((f) => (
+          <div className={styles.fuel} key={f}>
             <input
               className={styles.fuel_input}
               type="checkbox"
-              value={fuel}
+              value={f}
+              checked={fuel.includes(f)}
               onChange={onChange}
             />
-            <p className={styles.fuel_label}>{fuel}</p>
+            <p className={styles.fuel_label}>{f}</p>
           </div>
         ))}
       </div>

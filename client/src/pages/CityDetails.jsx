@@ -6,9 +6,11 @@ import CarItem from "../components/UI/CarItem";
 import locationData from "../assets/data/location.json";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Loading from "../components/UI/Loading";
 
 const CityDetails = () => {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const { startDate, startTime, endDate, endTime, location } = useParams();
 
@@ -37,6 +39,7 @@ const CityDetails = () => {
           });
         }
         setData(polishedData);
+        setLoading(false);
         localStorage.setItem("carData", JSON.stringify(rawData));
       })
       .catch((err) => {
@@ -44,7 +47,7 @@ const CityDetails = () => {
       });
   }, [URL]);
 
-  if (data) {
+  if (!loading) {
     return (
       <Helmet title="Cars | City">
         <CommonSection title="Available Cars" />
@@ -59,6 +62,8 @@ const CityDetails = () => {
         </section>
       </Helmet>
     );
+  } else {
+    return <Loading />;
   }
 };
 

@@ -21,6 +21,7 @@ const Segment = ({ segmentOptions, segment, setSegment }) => {
               className={styles.segment_input}
               type="checkbox"
               value={seg}
+              checked={segment.includes(seg)}
               onChange={onChange}
             />
             <p className={styles.segment_label}>{seg}</p>

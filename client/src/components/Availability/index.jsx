@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 const Availability = ({ availability, setAvailability }) => {
   return (
     <div className={styles.container}>
-      <i class="ri-calendar-check-line"></i>
+      <i className="ri-calendar-check-line"></i>
       <p className={styles.availability_filter}>Car Availability:</p>
       <select
         value={availability}

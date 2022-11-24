@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 const CityFilter = ({ city, setCity }) => {
   return (
     <div className={styles.container}>
-      <i class="ri-map-pin-line"></i>
+      <i className="ri-map-pin-line"></i>
       <p className={styles.city_filter}>City:</p>
       <select
         value={city}

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import { useParams } from "react-router-dom";
-import BookingForm from "../components/UI/BookingForm";
-import PaymentMethod from "../components/UI/PaymentMethod";
+import PayButton from "../components/UI/PayButton";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -47,11 +46,11 @@ const CarDetails = () => {
 
                     <span className=" d-flex align-items-center gap-2">
                       <span style={{ color: "#f9a826" }}>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
-                        <i class="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
+                        <i className="ri-star-s-fill"></i>
                       </span>
                       ({singleCarItem.pricePerHour} ratings)
                     </span>
@@ -76,7 +75,7 @@ const CarDetails = () => {
                   >
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-roadster-line"
+                        className="ri-roadster-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.model}
@@ -84,7 +83,7 @@ const CarDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-settings-2-line"
+                        className="ri-settings-2-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.transmission}
@@ -92,7 +91,7 @@ const CarDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-timer-flash-line"
+                        className="ri-timer-flash-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.mileage + " kmpl"}
@@ -105,7 +104,7 @@ const CarDetails = () => {
                   >
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-gas-station-line"
+                        className="ri-gas-station-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.fuelType}
@@ -113,7 +112,7 @@ const CarDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-wheelchair-line"
+                        className="ri-wheelchair-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.carSeats + " seats"}
@@ -121,26 +120,26 @@ const CarDetails = () => {
 
                     <span className=" d-flex align-items-center gap-1 section__description">
                       <i
-                        class="ri-building-2-line"
+                        className="ri-building-2-line"
                         style={{ color: "#f9a826" }}
                       ></i>{" "}
                       {singleCarItem.producer}
                     </span>
                   </div>
                 </div>
-              </Col>
 
-              <Col lg="7" className="mt-5">
-                <div className="booking-info mt-5">
-                  <h5 className="mb-4 fw-bold ">Booking Information</h5>
-                  <BookingForm />
-                </div>
-              </Col>
-
-              <Col lg="5" className="mt-5">
-                <div className="payment__info mt-5">
-                  <h5 className="mb-4 fw-bold ">Payment Information</h5>
-                  <PaymentMethod />
+                <div className="checkout-btn">
+                  <PayButton
+                    checkOutItem={{
+                      name: `${singleCarItem.producer} ${singleCarItem.model}`,
+                      fullSizeImage: `${singleCarItem.thumbImage}`,
+                      _id: `${singleCarItem._id}`,
+                      fuelType: `${singleCarItem.fuelType}`,
+                      carType: `${singleCarItem.carType}`,
+                      transmission: `${singleCarItem.transmission}`,
+                      discountedPrice: `${singleCarItem.pricePerDay}`,
+                    }}
+                  />
                 </div>
               </Col>
             </Row>

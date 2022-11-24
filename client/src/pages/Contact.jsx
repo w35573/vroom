@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
+import "../styles/contact.css";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Form, FormGroup, Input } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/UI/CommonSection";
+// eslint-disable-line import/no-webpack-loader-syntax
+import Map, { Marker, Popup } from "react-map-gl";
+import pin from "../assets/all-images/pin.png";
 
-import "../styles/contact.css";
+const accessToken =
+  "pk.eyJ1IjoidzM1NTczIiwiYSI6ImNsYW5zaHQ2aTBjZmozcGx4dGp6aThrOTcifQ._vpX9RYwoyS2cvjZeFs-gw";
 
 const socialLinks = [
   {
@@ -50,7 +55,7 @@ const Contact = () => {
                   ></textarea>
                 </FormGroup>
 
-                <button className=" contact__btn" type="submit">
+                <button className="contact__btn" type="submit">
                   Send Message
                 </button>
               </Form>
@@ -83,12 +88,33 @@ const Contact = () => {
                       key={index}
                       className="social__link-icon"
                     >
-                      <i class={item.icon}></i>
+                      <i className={item.icon}></i>
                     </Link>
                   ))}
                 </div>
               </div>
             </Col>
+          </Row>
+
+          <Row className="map-wrap">
+            <Map
+              initialViewState={{
+                longitude: 72.8335405,
+                latitude: 19.1231776,
+                zoom: 16,
+              }}
+              style={{ height: 500 }}
+              mapStyle="mapbox://styles/mapbox/streets-v11"
+              mapboxAccessToken={accessToken}
+            >
+              <Marker
+                longitude={72.8335405}
+                latitude={19.1231776}
+                anchor="bottom"
+              >
+                <img src={pin} className="pin" />
+              </Marker>
+            </Map>
           </Row>
         </Container>
       </section>
