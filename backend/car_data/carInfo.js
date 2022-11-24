@@ -29,7 +29,7 @@ async function getData(city) {
             }
         });
 
-        await page.goto(URL, { waitUntil: 'networkidle2' });
+        await page.goto(URL, { waitUntil: 'networkidle0' });
 
         await browser.close();
 

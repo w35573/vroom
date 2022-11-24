@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res, next) => {
-    res.send("Api running");
+    res.send("API LIVE!");
 });
 
 //GET car info filtered

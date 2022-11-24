@@ -29,7 +29,7 @@ async function getData(city, producer, model, transmission, id) {
             }
         })
 
-        await page.goto(URL, { waitUntil: 'networkidle2' });
+        await page.goto(URL, { waitUntil: 'networkidle0' });
 
         await browser.close();
 

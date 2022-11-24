@@ -44,7 +44,7 @@ async function getData(city, min, max, availability, fuel, transmission, brand, 
             }
         });
 
-        await page.goto(URL, { waitUntil: 'networkidle2' });
+        await page.goto(URL, { waitUntil: 'networkidle0' });
 
         await browser.close();
 
