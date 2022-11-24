@@ -12,8 +12,8 @@ const carsFilter = require('./car_data/cars');
 const blogData = require('./blog_data/blogData');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
-const stripe = require('../backend/routes/stripe');
-const fetchOrders = require('../backend/routes/fetchOrders');
+const stripe = require('./routes/stripe');
+const fetchOrders = require('./routes/fetchOrders');
 
 app.use(express.json());
 app.use(cors());
