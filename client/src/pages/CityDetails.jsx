@@ -25,7 +25,7 @@ const CityDetails = () => {
     axios
       .get(URL)
       .then((res) => {
-        const rawData = res.data.data.carModels;
+        const rawData = res.data.carModels;
         const polishedData = [];
         for (let i = 0; i < rawData.length; i++) {
           polishedData.push({

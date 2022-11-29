@@ -45,7 +45,7 @@ const FindCarForm = () => {
     <Form className="form" onSubmit={handleSubmit}>
       <div className=" d-flex align-items-center justify-content-between flex-wrap">
         <FormGroup className="select__group">
-          <select onChange={handleChangeLocation}>
+          <select onChange={handleChangeLocation} id="location">
             <option value="0">Select Location</option>
             <option value="bangalore">Bangalore</option>
             <option value="hyderabad">Hyderabad</option>
@@ -73,6 +73,7 @@ const FindCarForm = () => {
         <FormGroup className="form__group">
           <input
             type="date"
+            id="date"
             required
             className="start__date"
             onChange={handleChangeStartDate}
