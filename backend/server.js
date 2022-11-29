@@ -38,8 +38,6 @@ app.get("/api/news", async (req, res, next) => {
         const response = await fetch(URL, config);
         const data = await response.json();
 
-        console.log(data);
-
         res.status(200).json({
             error: "false",
             data,
