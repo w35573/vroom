@@ -8,23 +8,16 @@ import Loading from "../../components/UI/Loading";
 
 const BlogList = () => {
   const [blogData, setBlogs] = useState([]);
-  const URL =
-    "https://newsapi.org/v2/everything?q='ev'&sortBy=publishedAt&language=en&excludeDomains=prnewswire.com";
-  const config = {
-    headers: {
-      "X-Api-Key": "7ce7c0dd83ad498db44a1664fff722ef",
-    },
-  };
-
+  
   const authorNames = authors.results.map((author) => {
     return author.name.first;
   });
 
   useEffect(() => {
     axios
-      .get(URL, config)
+      .get('/api/news')
       .then((res) => {
-        const rawData = res.data.articles;
+        const rawData = res.data.data.articles;
         const polishedData = [];
 
         for (let i = 0; i < rawData.length; i++) {
@@ -67,8 +60,6 @@ const BlogList = () => {
 
         //   }
         // }
-
-        console.log(polishedData[0]);
 
         setBlogs(polishedData);
 

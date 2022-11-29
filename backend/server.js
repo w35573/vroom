@@ -14,12 +14,41 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 const stripe = require('./routes/stripe');
 const fetchOrders = require('./routes/fetchOrders');
+const fetch = require('node-fetch');
 
 app.use(express.json());
 app.use(cors());
 
 app.get("/", (req, res, next) => {
     res.send("API LIVE!");
+});
+
+//GET news data
+
+app.get("/api/news", async (req, res, next) => {
+    try {
+        const URL =
+            "https://newsapi.org/v2/everything?q='ev'&sortBy=publishedAt&language=en&excludeDomains=prnewswire.com";
+        const config = {
+            headers: {
+                "X-Api-Key": "7ce7c0dd83ad498db44a1664fff722ef",
+            },
+        };
+
+        const response = await fetch(URL, config);
+        const data = await response.json();
+
+        console.log(data);
+
+        res.status(200).json({
+            error: "false",
+            data,
+        })
+
+    } catch (err) {
+        res.status(400).json({ error: true, message: err.message })
+    }
+
 });
 
 //GET car info filtered
