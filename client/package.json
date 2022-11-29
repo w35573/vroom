@@ -12,7 +12,7 @@
     "axios": "^1.0.0",
     "bootstrap": "^5.2.2",
     "generate-username-from-email": "^1.0.2",
-    "mapbox-gl": "^2.11.0",
+    "mapbox-gl": "1.13.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
