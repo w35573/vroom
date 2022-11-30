@@ -1,7 +1,7 @@
 {
   "name": "vroom-car-rental",
   "version": "0.1.0",
-  "proxy": "https://vroom-backend.herokuapp.com/",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@alan-ai/alan-sdk-web": "^1.8.41",

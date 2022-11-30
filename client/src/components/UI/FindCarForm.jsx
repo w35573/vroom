@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const FindCarForm = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
+  const [startTime, setStartTime] = useState("11:00");
+  const [endTime, setEndTime] = useState("14:00");
   const [location, setLocation] = useState("");
 
   const handleSubmit = (e) => {
@@ -73,7 +73,7 @@ const FindCarForm = () => {
         <FormGroup className="form__group">
           <input
             type="date"
-            id="date"
+            id="start-date"
             required
             className="start__date"
             onChange={handleChangeStartDate}
@@ -83,6 +83,7 @@ const FindCarForm = () => {
         <FormGroup className="form__group">
           <input
             className="start__time"
+            id="start-time"
             type="time"
             onChange={handleChangeStartTime}
             required
@@ -92,6 +93,7 @@ const FindCarForm = () => {
         <FormGroup className="form__group">
           <input
             type="date"
+            id="end-date"
             required
             className="end__date"
             onChange={handleChangeEndDate}
@@ -101,6 +103,7 @@ const FindCarForm = () => {
         <FormGroup className="form__group">
           <input
             className="end__time"
+            id="end-time"
             type="time"
             onChange={handleChangeEndTime}
             required
@@ -108,7 +111,7 @@ const FindCarForm = () => {
         </FormGroup>
 
         <FormGroup className="form__group">
-          <button className="btn find__car-btn">
+          <button className="btn find__car-btn" id="book-btn">
             <Link
               to={`/cars/${startDate}/${startTime}/${endDate}/${endTime}/${location}`}
               className="style-link"

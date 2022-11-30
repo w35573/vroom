@@ -21,6 +21,7 @@ const Login = () => {
                 <label>Email address:</label>
                 <input
                     type="email"
+                    id="email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                 />
@@ -30,12 +31,13 @@ const Login = () => {
                 <label>Password:</label>
                 <input
                     type="password"
+                    id="password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                 />
             </div>
 
-            <button disabled={isLoading} className="login-btn">Log in</button>
+            <button disabled={isLoading} className="login-btn" id='login-btn'>Log in</button>
             {error && <div className="error">{error}</div>}
         </form>
     )
