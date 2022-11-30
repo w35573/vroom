@@ -107,12 +107,12 @@ async function bookTicket() {
 
         const heading = await page2.$eval('#root > div:nth-child(2) > div > div > h1', el => el.textContent);
 
-        console.log(heading);
+        console.log('\nheading: ', heading);
 
         if (heading === 'Success') {
-            console.log('Test 1 Passed');
+            console.log('Test 2 Passed');
         } else {
-            console.log('Test 1 Failed');
+            console.log('Test 2 Failed');
         }
 
         /* close the browser */
@@ -126,7 +126,8 @@ async function login() {
     try {
         const browser = await puppeteer.launch({
             headless: false,
-            args: ['--no-sandbox', '--disable-setuid-sandbox']
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-maximized'],
+            defaultViewport: null
         });
 
         const page = await browser.newPage();
@@ -139,9 +140,31 @@ async function login() {
         await page.keyboard.type('Tpp#5124');
 
         await page.click('#login-btn');
+
+        await page.waitForTimeout(1000);
+
+        const localStorage = await page.evaluate(() => Object.assign({}, window.localStorage));
+
+
+        //console.log(localStorage.user);
+
+        if (localStorage['user']) {
+            console.log('Successfully logged in');
+            console.log('user: ', localStorage['user']);
+            console.log('Test 1 Passed');
+        } else {
+            console.log('Test 1 Failed');
+        }
+
+        browser.close();
     } catch (error) {
         console.error(error);
     }
 }
 
-bookTicket();
+async function runTests() {
+    await login();
+    await bookTicket();
+}
+
+runTests();
