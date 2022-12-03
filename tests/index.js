@@ -36,11 +36,11 @@ async function bookTicket() {
         await page2.select('#location', 'mumbai');
         //start date
         await page2.focus('#start-date');
-        await page2.keyboard.type('01-12-2022');
+        await page2.keyboard.type('04-12-2022');
         //use defaults for start time
         //end date
         await page2.focus('#end-date');
-        await page2.keyboard.type('02-12-2022');
+        await page2.keyboard.type('05-12-2022');
         //use defaults for end time
 
         // submit

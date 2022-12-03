@@ -1,13 +1,16 @@
-const axios = require('axios');
+const fetch = require('node-fetch');
 
-// and we need jsdom and Readability to parse the article HTML
+// we need jsdom and Readability to parse the article HTML
 const { JSDOM } = require('jsdom');
 const { Readability } = require('@mozilla/readability');
 
 async function getData(url) {
     try {
-        const response = await axios.get(url);
-        const dom = new JSDOM(response.data, { url: url });
+        const response = await fetch(url);
+        const html = await response.text();
+        // console.log(html);
+        // const data = await response.json();
+        const dom = new JSDOM(html, { url: url });
         const article = new Readability(dom.window.document).parse();
         return {
             content: article.textContent
